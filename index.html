@@ -273,6 +273,46 @@ body {
   head, header, footer { display: none; }
 }
 </style>
+
+<style>
+@media (max-width: 768px) {
+  body { padding: 0; background: var(--white); }
+  
+  .page {
+    padding: 40px 28px 60px;
+    box-shadow: none;
+    max-width: 100%;
+  }
+
+  .doc-title { font-size: 32px; }
+
+  .mes-block { grid-template-columns: 1fr; }
+
+  .mes-left {
+    padding: 20px 20px 12px;
+    border-bottom: 1px solid rgba(196,168,130,0.15);
+  }
+
+  .mes-right { padding: 16px 20px 24px; }
+
+  .inversion-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 24px 20px;
+  }
+
+  .inv-terms { text-align: left; }
+
+  .doc-footer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .section-label { margin-top: 40px; }
+}
+</style>
 </head>
 <body>
 <div class="page">
