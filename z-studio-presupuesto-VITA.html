@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z Studio — Presupuesto</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Archivo:wght@100;200;300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0C0906;
+  --white: #F2EDE4;
+  --camel: #C4A882;
+  --camel-light: #DFC9A8;
+  --warm: #A89880;
+  --charcoal: #1A1410;
+  --mid: #2A2018;
+  --sand: #E8E0D4;
+  --border: rgba(196,168,130,0.2);
+}
+
+@media print {
+  body { background: white; }
+  .page { padding: 60px; max-width: 100%; box-shadow: none; }
+}
+
+body {
+  font-family: 'Archivo', sans-serif;
+  background: #E8E2D8;
+  min-height: 100vh;
+  padding: 60px 24px;
+}
+
+.page {
+  background: var(--white);
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 72px 72px 80px;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.doc-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--camel);
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.doc-title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 100;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.doc-date {
+  font-family: 'Cormorant', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--warm);
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.doc-rule {
+  height: 1px;
+  background: var(--border);
+  margin: 40px 0;
+}
+
+/* INTRO */
+.doc-intro {
+  font-size: 14px;
+  color: var(--warm);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 520px;
+}
+
+/* SECTION */
+.section-label {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 28px;
+  margin-top: 52px;
+}
+
+.section-num {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--camel);
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  font-weight: 300;
+}
+
+/* MES ROWS */
+.mes-block {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1px;
+  margin-bottom: 1px;
+}
+
+.mes-left {
+  background: #F5F0E8;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mes-num {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--camel);
+  font-weight: 300;
+}
+
+.mes-titulo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 200;
+  font-size: 13px;
+  color: var(--black);
+  line-height: 1.3;
+}
+
+.mes-right {
+  background: #FAF7F2;
+  padding: 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mes-item {
+  font-size: 12px;
+  color: #4A3A30;
+  font-weight: 300;
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+}
+
+.mes-dash {
+  color: var(--camel);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* INVERSIÓN */
+.inversion-block {
+  background: #F0EBE2;
+  padding: 32px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.inv-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--warm);
+  font-weight: 300;
+}
+
+.inv-amount {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 100;
+  font-size: 20px;
+  color: var(--black);
+  letter-spacing: 0.02em;
+}
+
+.inv-terms {
+  font-family: 'Cormorant', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--warm);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* BULLETS */
+.bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.bullet-item {
+  font-size: 13px;
+  color: #4A3A30;
+  font-weight: 300;
+  line-height: 1.55;
+  display: flex;
+  gap: 12px;
+}
+
+.b-dash { color: var(--camel); flex-shrink: 0; }
+
+/* FOOTER */
+.doc-footer {
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footer-names {
+  font-size: 13px;
+  color: var(--warm);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.footer-logo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 100;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: rgba(12,9,6,0.15);
+}
+</style>
+
+<style>
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 18mm 18mm 18mm;
+  }
+
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  body { background: white !important; padding: 0 !important; }
+
+  .page {
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .mes-block { page-break-inside: avoid; break-inside: avoid; }
+  .inversion-block { page-break-inside: avoid; break-inside: avoid; }
+  .section-label { page-break-after: avoid; break-after: avoid; }
+  .bullet-list { page-break-inside: avoid; break-inside: avoid; }
+  .doc-footer { page-break-inside: avoid; break-inside: avoid; }
+
+  /* Remove any browser headers/footers */
+  head, header, footer { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-eyebrow">Z Studio — Vita Bella Shoes</div>
+  <div class="doc-title">Acompañamiento<br>Estratégico de<br>Apertura</div>
+  <div style="font-family:'Cormorant',serif;font-style:italic;font-size:16px;color:var(--camel);margin-top:10px;margin-bottom:4px;">Del concepto al primer día.</div>
+  <div class="doc-date">Buenos Aires, 2025</div>
+
+  <div class="doc-rule"></div>
+
+  <p class="doc-intro">La identidad de Vita Bella, expresada a través de una cafetería.</p>
+
+  <div class="doc-rule"></div>
+
+  <!-- ESTRUCTURA -->
+  <div class="section-label">
+    <span class="section-num">01</span>
+    <span class="section-title">Estructura del proyecto</span>
+  </div>
+
+  <div class="mes-block">
+    <div class="mes-left">
+      <div class="mes-num">Mes 01</div>
+      <div class="mes-titulo">Fundamentos<br>y Concepto</div>
+    </div>
+    <div class="mes-right">
+      <div class="mes-item"><span class="mes-dash">—</span><span>Sincronización con equipo de arquitectura</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Diagnóstico del contexto y flujo de clientes</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Definición del concepto y posicionamiento</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Modelo de relación con el local de calzados</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Coordinación inicial con marketing y branding</span></div>
+    </div>
+  </div>
+
+  <div class="mes-block">
+    <div class="mes-left">
+      <div class="mes-num">Mes 02</div>
+      <div class="mes-titulo">Producto,<br>Experiencia<br>y Equipo</div>
+    </div>
+    <div class="mes-right">
+      <div class="mes-item"><span class="mes-dash">—</span><span>Armado de menú alineado al concepto</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Curaduría de proveedores estratégicos</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Diseño de la experiencia integral del cliente</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Estrategia de fidelización y recurrencia</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Capacitación y alineación del equipo de cocina</span></div>
+    </div>
+  </div>
+
+  <div class="mes-block">
+    <div class="mes-left">
+      <div class="mes-num">Mes 03</div>
+      <div class="mes-titulo">Lanzamiento<br>y Cierre</div>
+    </div>
+    <div class="mes-right">
+      <div class="mes-item"><span class="mes-dash">—</span><span>Definición de métricas de éxito para los primeros meses de operación</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Ajustes finales de menú, servicio y espacio</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Briefing de experiencia para el equipo de PR del evento de lanzamiento</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Alineación final del equipo de cocina</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Marcha blanca de operación</span></div>
+      <div class="mes-item"><span class="mes-dash">—</span><span>Acompañamiento post apertura — primeras dos semanas</span></div>
+    </div>
+  </div>
+
+  <!-- INVERSIÓN -->
+  <div class="inversion-block">
+    <div>
+      <div class="inv-label">Inversión total</div>
+    </div>
+    <div style="text-align:right">
+      <div class="inv-amount">USD 15.000</div>
+      <div class="inv-terms">50% al inicio · 50% al cierre</div>
+    </div>
+  </div>
+
+  <div class="doc-rule"></div>
+
+  <!-- METODOLOGÍA -->
+  <div class="section-label">
+    <span class="section-num">02</span>
+    <span class="section-title">Metodología de trabajo</span>
+  </div>
+  <div class="bullet-list">
+    <div class="bullet-item"><span class="b-dash">—</span><span>Sesión semanal de aproximadamente 3 horas con el equipo que se conforme para el proyecto</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Posibilidad de búsqueda e integración de agencias o profesionales externos dentro del mismo equipo de trabajo, según las necesidades del proyecto</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Resumen de sesión al cierre de cada encuentro</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Disponibilidad para consultas puntuales entre sesiones</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Seguimiento remoto según necesidad — vía Meet o WhatsApp</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Visitas al espacio según los temas a resolver</span></div>
+  </div>
+
+  <div class="doc-rule"></div>
+
+  <!-- NO INCLUYE -->
+  <div class="section-label">
+    <span class="section-num">03</span>
+    <span class="section-title">No incluye</span>
+  </div>
+  <div class="bullet-list">
+    <div class="bullet-item"><span class="b-dash">—</span><span>Operación diaria del local</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Gestión administrativa</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Compras recurrentes</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Atención de urgencias operativas</span></div>
+    <div class="bullet-item"><span class="b-dash">—</span><span>Dirección creativa de productos personalizados — se presupuesta por separado según la cantidad de productos a desarrollar, una vez definido el menú</span></div>
+  </div>
+
+  <div class="doc-rule"></div>
+  <div style="background:#F5F0E8;padding:24px 28px;">
+    <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--camel);font-weight:300;margin-bottom:8px;">Nota</div>
+    <p style="font-size:12px;color:#4A3A30;font-weight:300;line-height:1.7;">En caso de que el proyecto requiera extenderse más allá de los tres meses, cada mes adicional se presupuesta por separado dentro de los mismos valores acordados.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-names">
+      Nicole Hewlett<br>
+      Catalina Azcuy
+    </div>
+    <div class="footer-logo">Z·S</div>
+  </div>
+
+</div>
+</body>
+</html>
